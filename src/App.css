@@ -301,5 +301,19 @@ iframe[src*="lovable.dev"] {
   opacity: 0 !important;
   pointer-events: none !important;
 }
+/* 🚫 Stronger rule to kill Lovable badge immediately */
+:where(.lovable-badge),
+:where(.lovable-edit),
+:where([title="Edit with Lovable"]),
+:where(a[href*="lovable.dev"]),
+:where(iframe[src*="lovable.dev"]) {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  z-index: -9999 !important;
+}
+
 
 
