@@ -149,7 +149,7 @@ const AuthPage = ({ onAuthenticated }: AuthPageProps) => {
           
           <div className="animate-fade-in" style={{ animationDelay: '0.2s' }}>
             <CardTitle className="text-3xl font-bold hover:scale-105 transition-transform duration-300">
-              <span className="text-purple-300 animate-glow">Maya</span>{" "}
+              <span>Maya</span>{" "}
               <span className="text-white">AI Companion</span>
             </CardTitle>
             <CardDescription className="text-purple-300/80 mt-2 text-lg animate-fade-in" style={{ animationDelay: '0.4s' }}>
