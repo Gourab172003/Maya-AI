@@ -144,7 +144,7 @@ const AuthPage = ({ onAuthenticated }: AuthPageProps) => {
       <Card className="w-full max-w-md bg-purple-500/10 border border-purple-500/50 shadow-glow backdrop-blur-sm relative z-10 hover:shadow-intense transition-all duration-300 animate-scale-in animate-fade-in">
         <CardHeader className="text-center space-y-4 animate-slide-up">
           <div class="mx-auto w-20 h-20 rounded-full bg-purple-500/20 border border-purple-500/50 shadow-glow flex items-center justify-center hover:shadow-intense hover:scale-110 transition-all duration-300 animate-pulse">
-            <span class="text-2xl animate-glow" style="font-height:1rem; font-width:1rem;">💜</span>
+            <span class="text-2xl animate-glow" >💜</span>
           </div>
           
           <div className="animate-fade-in" style={{ animationDelay: '0.2s' }}>
