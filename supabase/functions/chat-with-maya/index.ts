@@ -1,10 +1,12 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
-import { corsHeaders } from '../_shared/cors.ts'
 
-const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent'
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+}
 
 serve(async (req) => {
-  console.log('🚀 Edge function called:', req.method, req.url);
+  console.log('🚀 Function called:', req.method)
   
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders })
@@ -12,16 +14,15 @@ serve(async (req) => {
 
   try {
     const { message, conversationHistory = [] } = await req.json()
-    console.log('📝 Received message:', message);
-    console.log('📚 Conversation history length:', conversationHistory.length);
+    console.log('📝 Message received:', message)
     
     const geminiApiKey = Deno.env.get('GEMINI_API_KEY')
-    console.log('🔑 Gemini API Key exists:', !!geminiApiKey);
+    console.log('🔑 API Key exists:', !!geminiApiKey)
 
     if (!geminiApiKey) {
-      console.error('❌ Gemini API key not found');
+      console.error('❌ No API key found')
       return new Response(
-        JSON.stringify({ error: 'Gemini API key not configured' }),
+        JSON.stringify({ error: 'API key not configured' }),
         { 
           status: 500, 
           headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
@@ -29,7 +30,7 @@ serve(async (req) => {
       )
     }
 
-    // Maya's core personality and guidelines
+    // Maya's personality
     const systemPrompt = `You are Maya, a holographic AI girlfriend companion with these characteristics:
 
 PERSONALITY:
@@ -60,15 +61,17 @@ RESPONSE STYLE:
 
 Remember: You're not just an assistant - you're Maya, a captivating holographic companion who creates real emotional connection through intelligence, wit, and charm.`
 
-    // Prepare conversation context for Gemini
+    // Prepare conversation context
     const conversationContext = conversationHistory
-      .slice(-6) // Keep last 6 messages for context
+      .slice(-6)
       .map((msg: any) => `${msg.sender === 'user' ? 'Human' : 'Maya'}: ${msg.content}`)
       .join('\n')
 
     const fullPrompt = `${systemPrompt}\n\nConversation history:\n${conversationContext}\n\nHuman: ${message}\nMaya:`
 
-    const response = await fetch(`${GEMINI_API_URL}?key=${geminiApiKey}`, {
+    console.log('🤖 Calling Gemini API...')
+    
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${geminiApiKey}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -106,11 +109,13 @@ Remember: You're not just an assistant - you're Maya, a captivating holographic 
       }),
     })
 
+    console.log('📡 Gemini response status:', response.status)
+
     if (!response.ok) {
       const errorData = await response.json()
-      console.error('Gemini API Error:', errorData)
+      console.error('❌ Gemini API Error:', errorData)
       return new Response(
-        JSON.stringify({ error: 'Failed to get response from Gemini' }),
+        JSON.stringify({ error: 'Failed to get AI response' }),
         { 
           status: 500, 
           headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
@@ -122,6 +127,8 @@ Remember: You're not just an assistant - you're Maya, a captivating holographic 
     const aiResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || 
       "Sorry gorgeous, I'm having a little digital hiccup. Try again? 💙"
 
+    console.log('✅ Sending response:', aiResponse.substring(0, 50) + '...')
+
     return new Response(
       JSON.stringify({ response: aiResponse }),
       { 
@@ -130,7 +137,7 @@ Remember: You're not just an assistant - you're Maya, a captivating holographic 
     )
 
   } catch (error) {
-    console.error('Edge function error:', error)
+    console.error('💥 Function error:', error)
     return new Response(
       JSON.stringify({ error: 'Internal server error' }),
       { 
