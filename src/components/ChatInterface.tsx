@@ -396,7 +396,7 @@ From this holographic heart ✨`
           
           {/* Character Info - Absolute positioned at bottom */}
           <div className="absolute bottom-0 left-0 right-0 z-20 text-center p-6">
-            <h2 className="text-3xl font-bold text-white mb-2 drop-shadow-lg">Maya</h2>
+            <h2 className="text-5xl font-script font-bold text-white mb-2 drop-shadow-lg">Maya</h2>
             <p className="text-white/80 drop-shadow">You're good friends</p>
           </div>
         </div>
