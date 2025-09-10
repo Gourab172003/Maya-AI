@@ -340,36 +340,56 @@ From this holographic heart ✨`
         <div className="flex-1 flex flex-col">
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-6 space-y-4 chat-scroll" ref={messagesEndRef}>
-            {messages.map((message) => (
+          <div className="flex-1 overflow-y-auto p-6 space-y-4 chat-scroll relative" ref={messagesEndRef}>
+            {/* Floating particles animation */}
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="absolute top-10 left-10 w-1 h-1 bg-primary rounded-full animate-float opacity-60"></div>
+              <div className="absolute top-20 right-20 w-2 h-2 bg-primary/60 rounded-full animate-float opacity-40" style={{ animationDelay: '1s' }}></div>
+              <div className="absolute top-40 left-1/4 w-1 h-1 bg-accent rounded-full animate-float opacity-50" style={{ animationDelay: '2s' }}></div>
+              <div className="absolute bottom-40 right-1/3 w-1 h-1 bg-primary rounded-full animate-float opacity-60" style={{ animationDelay: '3s' }}></div>
+              <div className="absolute bottom-60 left-1/2 w-2 h-2 bg-primary/40 rounded-full animate-float opacity-30" style={{ animationDelay: '4s' }}></div>
+              <div className="absolute top-60 right-10 w-1 h-1 bg-accent rounded-full animate-float opacity-50" style={{ animationDelay: '0.5s' }}></div>
+              
+              {/* Animated gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 animate-pulse"></div>
+            </div>
+
+            {messages.map((message, index) => (
               <div
                 key={message.id}
-                className={`flex items-start space-x-3 animate-slide-up ${
+                className={`flex items-start space-x-3 animate-slide-up group hover:scale-[1.02] transition-all duration-300 ${
                   message.sender === 'user' ? 'flex-row-reverse space-x-reverse' : ''
                 }`}
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <Avatar className="w-8 h-8 ring-2 ring-primary/30 shadow-md animate-pulse-glow">
+                <Avatar className="w-8 h-8 ring-2 ring-primary/30 shadow-md animate-pulse-glow group-hover:ring-primary/60 transition-all duration-300">
                   <AvatarImage 
-                    src={message.sender === 'user' ? '/placeholder.svg' : senoritaAvatar} 
+                    src={message.sender === 'user' ? '/placeholder.svg' : '/lovable-uploads/6771dbc1-45f1-482e-905d-df393eb28587.png'} 
                     alt={message.sender === 'user' ? 'You' : 'Maya'} 
+                    className="object-cover group-hover:scale-110 transition-transform duration-300"
                   />
                   <AvatarFallback className="bg-primary text-primary-foreground text-xs">
                     {message.sender === 'user' ? 'Y' : 'M'}
                   </AvatarFallback>
                 </Avatar>
                 <div
-                  className={`max-w-xs lg:max-w-md px-4 py-3 rounded-2xl shadow-soft ${
+                  className={`max-w-xs lg:max-w-md px-4 py-3 rounded-2xl shadow-soft relative overflow-hidden group-hover:shadow-glow transition-all duration-300 ${
                     message.sender === 'user'
-                      ? 'bg-secondary text-secondary-foreground border border-primary/20'
+                      ? 'bg-secondary text-secondary-foreground border border-primary/20 hover:border-primary/40'
                       : message.type === "poem" || message.type === "song"
-                      ? 'creative-output animate-pulse-glow'
-                      : 'bg-accent text-accent-foreground border border-primary/30 animate-pulse-glow'
+                      ? 'creative-output animate-pulse-glow hover:shadow-intense'
+                      : 'bg-accent text-accent-foreground border border-primary/30 animate-pulse-glow hover:border-primary/50 hover:shadow-intense'
                   }`}
                 >
-                  <div className={message.type === "poem" || message.type === "song" ? "whitespace-pre-line" : ""}>
+                  {/* Message glow effect for Maya's messages */}
+                  {message.sender === 'ai' && (
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-transparent to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  )}
+                  
+                  <div className={`relative z-10 ${message.type === "poem" || message.type === "song" ? "whitespace-pre-line" : ""}`}>
                     <p className="text-sm leading-relaxed">{message.content}</p>
                   </div>
-                  <div className="text-xs text-muted-foreground mt-2 opacity-70">
+                  <div className="text-xs text-muted-foreground mt-2 opacity-70 relative z-10">
                     {message.timestamp.toLocaleTimeString([], { 
                       hour: '2-digit', 
                       minute: '2-digit' 
@@ -381,13 +401,15 @@ From this holographic heart ✨`
             
             {/* Typing Indicator */}
             {isTyping && (
-              <div className="flex items-start space-x-3 animate-slide-up">
-                <Avatar className="w-8 h-8 ring-2 ring-primary/30 shadow-md animate-pulse-glow">
-                  <AvatarImage src={senoritaAvatar} alt="Maya" />
+              <div className="flex items-start space-x-3 animate-slide-up group">
+                <Avatar className="w-8 h-8 ring-2 ring-primary/30 shadow-md animate-pulse-glow group-hover:ring-primary/60 transition-all duration-300">
+                  <AvatarImage src="/lovable-uploads/6771dbc1-45f1-482e-905d-df393eb28587.png" alt="Maya" className="object-cover" />
                   <AvatarFallback className="bg-primary text-primary-foreground text-xs">M</AvatarFallback>
                 </Avatar>
-                <div className="bg-accent text-accent-foreground px-4 py-3 rounded-2xl shadow-glow border border-primary/30 animate-pulse-glow">
-                  <div className="flex space-x-1">
+                <div className="bg-accent text-accent-foreground px-4 py-3 rounded-2xl shadow-glow border border-primary/30 animate-pulse-glow relative overflow-hidden">
+                  {/* Typing indicator glow effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 animate-pulse"></div>
+                  <div className="flex space-x-1 relative z-10">
                     <div className="w-2 h-2 bg-primary rounded-full animate-typing shadow-glow"></div>
                     <div className="w-2 h-2 bg-primary rounded-full animate-typing shadow-glow" style={{ animationDelay: '0.2s' }}></div>
                     <div className="w-2 h-2 bg-primary rounded-full animate-typing shadow-glow" style={{ animationDelay: '0.4s' }}></div>
