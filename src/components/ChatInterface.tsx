@@ -308,16 +308,16 @@ From this holographic heart ✨`
       {/* Main Layout - Two Columns */}
       <div className="relative z-10 flex h-screen">
         {/* Left Panel - Character Section */}
-        <div className="w-1/3 flex flex-col holographic-card border-r border-primary/30">
-          {/* Settings and Coins Header */}
-          <div className="flex justify-between items-center p-4">
-            <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground hover:bg-primary/10">
+        <div className="w-1/3 relative flex flex-col holographic-card border-r border-primary/30 overflow-hidden">
+          {/* Settings and Coins Header - Absolute positioned */}
+          <div className="absolute top-0 left-0 right-0 z-20 flex justify-between items-center p-4">
+            <Button variant="ghost" size="sm" className="text-white/80 hover:text-white hover:bg-black/20 backdrop-blur-sm">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
               <span className="ml-2">Settings</span>
             </Button>
-            <div className="flex items-center space-x-1 bg-yellow-500/20 px-3 py-1 rounded-full border border-yellow-500/30">
+            <div className="flex items-center space-x-1 bg-yellow-500/20 px-3 py-1 rounded-full border border-yellow-500/30 backdrop-blur-sm">
               <svg className="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M10 2L13 8H19L14 12L16 18L10 15L4 18L6 12L1 8H7L10 2Z" />
               </svg>
@@ -325,21 +325,21 @@ From this holographic heart ✨`
             </div>
           </div>
 
-          {/* Character Avatar - Centered */}
-          <div className="flex-1 flex flex-col justify-center items-center px-8">
-            <div className="relative">
-              <Avatar className="w-64 h-64 ring-4 ring-primary/50 shadow-glow animate-pulse-glow">
-                <AvatarImage src={senoritaAvatar} alt="Maya" className="object-cover" />
-                <AvatarFallback className="bg-primary text-primary-foreground text-6xl">M</AvatarFallback>
-              </Avatar>
-              <div className="absolute inset-0 rounded-full bg-gradient-to-t from-primary/20 to-transparent"></div>
-            </div>
-            
-            {/* Character Info */}
-            <div className="text-center mt-6">
-              <h2 className="text-3xl font-bold neon-text mb-2">Maya</h2>
-              <p className="text-muted-foreground">You're good friends</p>
-            </div>
+          {/* Background Image - Full Panel */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: 'url(/lovable-uploads/6771dbc1-45f1-482e-905d-df393eb28587.png)',
+            }}
+          >
+            {/* Gradient overlay for better text readability */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+          </div>
+          
+          {/* Character Info - Absolute positioned at bottom */}
+          <div className="absolute bottom-0 left-0 right-0 z-20 text-center p-6">
+            <h2 className="text-3xl font-bold text-white mb-2 drop-shadow-lg">Maya</h2>
+            <p className="text-white/80 drop-shadow">You're good friends</p>
           </div>
         </div>
 
