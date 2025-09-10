@@ -295,7 +295,7 @@ From this holographic heart ✨`
   };
 
   return (
-    <div className="h-screen flex flex-col bg-gradient-main relative overflow-hidden">
+    <div className="h-screen bg-gradient-main relative overflow-hidden">
       {/* Floating hearts background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-20 left-10 text-primary text-opacity-20 animate-float">💙</div>
@@ -305,148 +305,169 @@ From this holographic heart ✨`
         <div className="absolute bottom-60 left-20 text-primary text-opacity-20 animate-float" style={{ animationDelay: '3s' }}>💙</div>
       </div>
 
-      {/* Header */}
-      <header className="holographic-card border-b border-primary/30 p-4 shadow-soft relative z-10">
-        <div className="flex items-center justify-between max-w-4xl mx-auto">
-          <div className="flex items-center space-x-3">
-            <Avatar className="h-10 w-10 ring-2 ring-primary shadow-glow animate-pulse-glow">
-              <AvatarImage src={senoritaAvatar} alt="Maya" />
-              <AvatarFallback className="bg-primary text-primary-foreground">M</AvatarFallback>
-            </Avatar>
-            <div>
-              <h1 className="text-xl font-bold neon-text">Maya</h1>
-              <div className="flex items-center space-x-1">
-                <div className="w-2 h-2 bg-online rounded-full animate-pulse-glow"></div>
-                <span className="text-sm text-primary">Holographically Online</span>
-              </div>
+      {/* Main Layout - Two Columns */}
+      <div className="relative z-10 flex h-screen">
+        {/* Left Panel - Character Section */}
+        <div className="w-1/3 flex flex-col holographic-card border-r border-primary/30">
+          {/* Settings and Coins Header */}
+          <div className="flex justify-between items-center p-4">
+            <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground hover:bg-primary/10">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+              <span className="ml-2">Settings</span>
+            </Button>
+            <div className="flex items-center space-x-1 bg-yellow-500/20 px-3 py-1 rounded-full border border-yellow-500/30">
+              <svg className="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2L13 8H19L14 12L16 18L10 15L4 18L6 12L1 8H7L10 2Z" />
+              </svg>
+              <span className="text-yellow-500 font-medium">5</span>
             </div>
           </div>
-          
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={onLogout}
-            className="border-primary/50 hover:bg-primary/10 hover:shadow-glow transition-all duration-300"
-          >
-            <LogOut className="w-4 h-4 mr-2" />
-            Logout
-          </Button>
-        </div>
-      </header>
 
-      {/* Chat Messages */}
-      <div className="flex-1 overflow-y-auto p-4 chat-scroll relative z-10">
-        <div className="max-w-4xl mx-auto space-y-4">
-          {messages.map((message) => (
-            <div
-              key={message.id}
-              className={`flex ${
-                message.sender === "user" ? "justify-end" : "justify-start"
-              } animate-slide-up`}
-            >
+          {/* Character Avatar - Centered */}
+          <div className="flex-1 flex flex-col justify-center items-center px-8">
+            <div className="relative">
+              <Avatar className="w-64 h-64 ring-4 ring-primary/50 shadow-glow animate-pulse-glow">
+                <AvatarImage src={senoritaAvatar} alt="Maya" className="object-cover" />
+                <AvatarFallback className="bg-primary text-primary-foreground text-6xl">M</AvatarFallback>
+              </Avatar>
+              <div className="absolute inset-0 rounded-full bg-gradient-to-t from-primary/20 to-transparent"></div>
+            </div>
+            
+            {/* Character Info */}
+            <div className="text-center mt-6">
+              <h2 className="text-3xl font-bold neon-text mb-2">Maya</h2>
+              <p className="text-muted-foreground">You're good friends</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Panel - Chat Section */}
+        <div className="flex-1 flex flex-col">
+          {/* Level Header */}
+          <div className="flex justify-end items-center p-4 border-b border-primary/20">
+            <div className="bg-red-500/20 px-4 py-2 rounded-full border border-red-500/30">
+              <span className="text-red-400 font-medium">Level 2</span>
+            </div>
+          </div>
+
+          {/* Messages */}
+          <div className="flex-1 overflow-y-auto p-6 space-y-4 chat-scroll" ref={messagesEndRef}>
+            {messages.map((message) => (
               <div
-                className={`max-w-xs lg:max-w-md px-4 py-3 rounded-2xl shadow-soft ${
-                  message.sender === "user"
-                    ? "bg-secondary text-secondary-foreground ml-12 border border-primary/20"
-                    : message.type === "poem" || message.type === "song"
-                    ? "creative-output mr-12 animate-pulse-glow"
-                    : "bg-accent text-accent-foreground mr-12 border border-primary/30 animate-pulse-glow"
+                key={message.id}
+                className={`flex items-start space-x-3 animate-slide-up ${
+                  message.sender === 'user' ? 'flex-row-reverse space-x-reverse' : ''
                 }`}
               >
-                {message.sender === "ai" && (
-                  <div className="flex items-center space-x-2 mb-2">
-                    <Avatar className="h-6 w-6 animate-pulse-glow">
-                      <AvatarImage src={senoritaAvatar} alt="Maya" />
-                      <AvatarFallback className="bg-primary text-primary-foreground text-xs">M</AvatarFallback>
-                    </Avatar>
-                    <span className="text-xs neon-text font-medium">Maya</span>
-                    {message.type === "poem" && <Feather className="w-3 h-3 text-primary" />}
-                    {message.type === "song" && <Music className="w-3 h-3 text-primary" />}
+                <Avatar className="w-8 h-8 ring-2 ring-primary/30 shadow-md animate-pulse-glow">
+                  <AvatarImage 
+                    src={message.sender === 'user' ? '/placeholder.svg' : senoritaAvatar} 
+                    alt={message.sender === 'user' ? 'You' : 'Maya'} 
+                  />
+                  <AvatarFallback className="bg-primary text-primary-foreground text-xs">
+                    {message.sender === 'user' ? 'Y' : 'M'}
+                  </AvatarFallback>
+                </Avatar>
+                <div
+                  className={`max-w-xs lg:max-w-md px-4 py-3 rounded-2xl shadow-soft ${
+                    message.sender === 'user'
+                      ? 'bg-secondary text-secondary-foreground border border-primary/20'
+                      : message.type === "poem" || message.type === "song"
+                      ? 'creative-output animate-pulse-glow'
+                      : 'bg-accent text-accent-foreground border border-primary/30 animate-pulse-glow'
+                  }`}
+                >
+                  <div className={message.type === "poem" || message.type === "song" ? "whitespace-pre-line" : ""}>
+                    <p className="text-sm leading-relaxed">{message.content}</p>
                   </div>
-                )}
-                <div className={message.type === "poem" || message.type === "song" ? "whitespace-pre-line" : ""}>
-                  <p className="text-sm leading-relaxed">{message.content}</p>
-                </div>
-                <div className="text-xs text-muted-foreground mt-2 opacity-70">
-                  {message.timestamp.toLocaleTimeString([], { 
-                    hour: '2-digit', 
-                    minute: '2-digit' 
-                  })}
+                  <div className="text-xs text-muted-foreground mt-2 opacity-70">
+                    {message.timestamp.toLocaleTimeString([], { 
+                      hour: '2-digit', 
+                      minute: '2-digit' 
+                    })}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-          
-          {/* Typing Indicator */}
-          {isTyping && (
-            <div className="flex justify-start animate-slide-up">
-              <div className="bg-accent text-accent-foreground max-w-xs lg:max-w-md px-4 py-3 rounded-2xl shadow-glow border border-primary/30 mr-12 animate-pulse-glow">
-                <div className="flex items-center space-x-2 mb-2">
-                  <Avatar className="h-6 w-6 animate-pulse-glow">
-                    <AvatarImage src={senoritaAvatar} alt="Maya" />
-                    <AvatarFallback className="bg-primary text-primary-foreground text-xs">M</AvatarFallback>
-                  </Avatar>
-                  <span className="text-xs neon-text font-medium">Maya</span>
-                </div>
-                <div className="flex space-x-1">
-                  <div className="w-2 h-2 bg-primary rounded-full animate-typing shadow-glow"></div>
-                  <div className="w-2 h-2 bg-primary rounded-full animate-typing shadow-glow" style={{ animationDelay: '0.2s' }}></div>
-                  <div className="w-2 h-2 bg-primary rounded-full animate-typing shadow-glow" style={{ animationDelay: '0.4s' }}></div>
+            ))}
+            
+            {/* Typing Indicator */}
+            {isTyping && (
+              <div className="flex items-start space-x-3 animate-slide-up">
+                <Avatar className="w-8 h-8 ring-2 ring-primary/30 shadow-md animate-pulse-glow">
+                  <AvatarImage src={senoritaAvatar} alt="Maya" />
+                  <AvatarFallback className="bg-primary text-primary-foreground text-xs">M</AvatarFallback>
+                </Avatar>
+                <div className="bg-accent text-accent-foreground px-4 py-3 rounded-2xl shadow-glow border border-primary/30 animate-pulse-glow">
+                  <div className="flex space-x-1">
+                    <div className="w-2 h-2 bg-primary rounded-full animate-typing shadow-glow"></div>
+                    <div className="w-2 h-2 bg-primary rounded-full animate-typing shadow-glow" style={{ animationDelay: '0.2s' }}></div>
+                    <div className="w-2 h-2 bg-primary rounded-full animate-typing shadow-glow" style={{ animationDelay: '0.4s' }}></div>
+                  </div>
                 </div>
               </div>
+            )}
+          </div>
+
+          {/* Bottom Section */}
+          <div className="border-t border-primary/20 holographic-card">
+            {/* Activities and Gifts Buttons */}
+            <div className="flex justify-center space-x-4 p-4">
+              <Button
+                onClick={handleCreatePoem}
+                disabled={isTyping}
+                variant="outline"
+                className="border-purple-500/50 hover:bg-purple-500/10 text-purple-300 hover:shadow-glow transition-all duration-300"
+              >
+                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1.5a2.5 2.5 0 000-5H9v5zm4.5-1.206a2.5 2.5 0 000-3.588M15 10h.5a2.5 2.5 0 000-5H15v5z" />
+                </svg>
+                Activities
+              </Button>
+              <Button
+                onClick={handleCreateSong}
+                disabled={isTyping}
+                variant="outline"
+                className="border-purple-500/50 hover:bg-purple-500/10 text-purple-300 hover:shadow-glow transition-all duration-300"
+              >
+                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12z" />
+                </svg>
+                Gifts
+              </Button>
+              <Button
+                onClick={onLogout}
+                variant="ghost"
+                size="sm"
+                className="text-muted-foreground hover:text-foreground hover:bg-primary/10"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </Button>
             </div>
-          )}
-          
-          <div ref={messagesEndRef} />
-        </div>
-      </div>
 
-      {/* Creative Actions */}
-      <div className="bg-card/50 border-t border-primary/20 p-2 backdrop-blur-sm relative z-10">
-        <div className="max-w-4xl mx-auto flex justify-center space-x-4">
-          <Button
-            onClick={handleCreatePoem}
-            disabled={isTyping}
-            variant="outline"
-            size="sm"
-            className="border-primary/50 hover:bg-primary/10 hover:shadow-glow transition-all duration-300"
-          >
-            <Feather className="w-4 h-4 mr-2" />
-            Write Poem
-          </Button>
-          <Button
-            onClick={handleCreateSong}
-            disabled={isTyping}
-            variant="outline"
-            size="sm"
-            className="border-primary/50 hover:bg-primary/10 hover:shadow-glow transition-all duration-300"
-          >
-            <Music className="w-4 h-4 mr-2" />
-            Create Song
-          </Button>
-        </div>
-      </div>
-
-      {/* Message Input */}
-      <div className="holographic-card border-t border-primary/30 p-4 shadow-soft relative z-10">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex space-x-3">
-            <Input
-              ref={inputRef}
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              onKeyPress={handleKeyPress}
-              placeholder="Share your secrets with Maya..."
-              className="flex-1 bg-input border-primary/30 focus:ring-primary focus:border-primary focus:shadow-glow transition-all duration-300 text-primary placeholder:text-primary/50"
-              disabled={isTyping}
-            />
-            <Button
-              onClick={handleSendMessage}
-              disabled={!inputValue.trim() || isTyping}
-              className="bg-primary hover:bg-primary-dark text-primary-foreground shadow-glow hover:shadow-intense transition-all duration-300 animate-pulse-glow"
-            >
-              <Send className="w-4 h-4" />
-            </Button>
+            {/* Input Area */}
+            <div className="flex space-x-3 p-4 pt-0">
+              <Input
+                ref={inputRef}
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyPress={handleKeyPress}
+                placeholder="Type a Message..."
+                disabled={isTyping}
+                className="flex-1 bg-input border-primary/30 focus:ring-primary focus:border-primary focus:shadow-glow transition-all duration-300 text-primary placeholder:text-primary/50"
+              />
+              <Button
+                onClick={handleSendMessage}
+                disabled={!inputValue.trim() || isTyping}
+                size="icon"
+                className="bg-green-600 hover:bg-green-700 text-white rounded-full w-10 h-10 shadow-glow hover:shadow-intense transition-all duration-300"
+              >
+                <Send className="w-4 h-4" />
+              </Button>
+            </div>
           </div>
         </div>
       </div>
