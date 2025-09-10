@@ -351,7 +351,7 @@ From this holographic heart ✨`
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{
-              backgroundImage: 'url(/lovable-uploads/6771dbc1-45f1-482e-905d-df393eb28587.png)',
+              backgroundImage: 'url(/lovable-uploads/208c90f7-e3fd-4aef-a62f-4162170cc8cf.png)',
             }}
           >
             {/* Dark border vignette - softer intensity */}
