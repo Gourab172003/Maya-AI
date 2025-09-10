@@ -142,6 +142,22 @@
     50% { text-shadow: 0 0 20px hsl(195, 100%, 50%, 1); }
   }
 
+  /* Space travel star animations */
+  @keyframes stars-slow {
+    0% { transform: translateX(-100vw) translateY(0); }
+    100% { transform: translateX(100vw) translateY(-10vh); }
+  }
+
+  @keyframes stars-medium {
+    0% { transform: translateX(-100vw) translateY(0); }
+    100% { transform: translateX(100vw) translateY(-20vh); }
+  }
+
+  @keyframes stars-fast {
+    0% { transform: translateX(-100vw) translateY(0); }
+    100% { transform: translateX(100vw) translateY(-5vh); }
+  }
+
   /* Utility classes */
   .animate-typing {
     animation: typing 1.5s infinite;
@@ -165,6 +181,19 @@
 
   .animate-pulse-glow {
     animation: pulse 2s ease-in-out infinite;
+  }
+
+  /* Space travel star animation classes */
+  .animate-stars-slow {
+    animation: stars-slow 20s linear infinite;
+  }
+
+  .animate-stars-medium {
+    animation: stars-medium 15s linear infinite;
+  }
+
+  .animate-stars-fast {
+    animation: stars-fast 10s linear infinite;
   }
 
   .gradient-text {

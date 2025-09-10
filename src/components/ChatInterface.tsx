@@ -296,13 +296,50 @@ From this holographic heart ✨`
 
   return (
     <div className="h-screen bg-gradient-main relative overflow-hidden">
-      {/* Floating hearts background */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 left-10 text-primary text-opacity-20 animate-float">💙</div>
-        <div className="absolute top-40 right-20 text-primary text-opacity-15 animate-float" style={{ animationDelay: '2s' }}>✨</div>
-        <div className="absolute top-60 left-1/3 text-primary text-opacity-20 animate-float" style={{ animationDelay: '4s' }}>💙</div>
-        <div className="absolute bottom-40 right-10 text-primary text-opacity-15 animate-float" style={{ animationDelay: '1s' }}>✨</div>
-        <div className="absolute bottom-60 left-20 text-primary text-opacity-20 animate-float" style={{ animationDelay: '3s' }}>💙</div>
+      {/* Moving stars background - space travel effect */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Multiple layers of stars for depth */}
+        <div className="absolute inset-0 animate-stars-slow">
+          {Array.from({ length: 50 }).map((_, i) => (
+            <div
+              key={`star-slow-${i}`}
+              className="absolute w-1 h-1 bg-white rounded-full opacity-60"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 10}s`,
+              }}
+            />
+          ))}
+        </div>
+        
+        <div className="absolute inset-0 animate-stars-medium">
+          {Array.from({ length: 30 }).map((_, i) => (
+            <div
+              key={`star-medium-${i}`}
+              className="absolute w-2 h-2 bg-primary rounded-full opacity-40"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 8}s`,
+              }}
+            />
+          ))}
+        </div>
+        
+        <div className="absolute inset-0 animate-stars-fast">
+          {Array.from({ length: 20 }).map((_, i) => (
+            <div
+              key={`star-fast-${i}`}
+              className="absolute w-1 h-1 bg-accent rounded-full opacity-80"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 6}s`,
+              }}
+            />
+          ))}
+        </div>
       </div>
 
       {/* Main Layout - Two Columns */}
@@ -341,19 +378,6 @@ From this holographic heart ✨`
 
           {/* Messages */}
           <div className="flex-1 overflow-y-auto p-6 space-y-4 chat-scroll relative" ref={messagesEndRef}>
-            {/* Floating particles animation */}
-            <div className="absolute inset-0 pointer-events-none">
-              <div className="absolute top-10 left-10 w-1 h-1 bg-primary rounded-full animate-float opacity-60"></div>
-              <div className="absolute top-20 right-20 w-2 h-2 bg-primary/60 rounded-full animate-float opacity-40" style={{ animationDelay: '1s' }}></div>
-              <div className="absolute top-40 left-1/4 w-1 h-1 bg-accent rounded-full animate-float opacity-50" style={{ animationDelay: '2s' }}></div>
-              <div className="absolute bottom-40 right-1/3 w-1 h-1 bg-primary rounded-full animate-float opacity-60" style={{ animationDelay: '3s' }}></div>
-              <div className="absolute bottom-60 left-1/2 w-2 h-2 bg-primary/40 rounded-full animate-float opacity-30" style={{ animationDelay: '4s' }}></div>
-              <div className="absolute top-60 right-10 w-1 h-1 bg-accent rounded-full animate-float opacity-50" style={{ animationDelay: '0.5s' }}></div>
-              
-              {/* Animated gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 animate-pulse"></div>
-            </div>
-
             {messages.map((message, index) => (
               <div
                 key={message.id}
@@ -362,7 +386,7 @@ From this holographic heart ✨`
                 }`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <Avatar className="w-8 h-8 ring-2 ring-primary/30 shadow-md animate-pulse-glow group-hover:ring-primary/60 transition-all duration-300">
+                <Avatar className="w-8 h-8 ring-2 ring-primary/30 shadow-md group-hover:ring-primary/60 transition-all duration-300">
                   <AvatarImage 
                     src={message.sender === 'user' ? '/placeholder.svg' : '/lovable-uploads/6771dbc1-45f1-482e-905d-df393eb28587.png'} 
                     alt={message.sender === 'user' ? 'You' : 'Maya'} 
@@ -377,8 +401,8 @@ From this holographic heart ✨`
                     message.sender === 'user'
                       ? 'bg-secondary text-secondary-foreground border border-primary/20 hover:border-primary/40'
                       : message.type === "poem" || message.type === "song"
-                      ? 'creative-output animate-pulse-glow hover:shadow-intense'
-                      : 'bg-accent text-accent-foreground border border-primary/30 animate-pulse-glow hover:border-primary/50 hover:shadow-intense'
+                      ? 'creative-output hover:shadow-intense'
+                      : 'bg-accent text-accent-foreground border border-primary/30 hover:border-primary/50 hover:shadow-intense'
                   }`}
                 >
                   {/* Message glow effect for Maya's messages */}
@@ -402,13 +426,11 @@ From this holographic heart ✨`
             {/* Typing Indicator */}
             {isTyping && (
               <div className="flex items-start space-x-3 animate-slide-up group">
-                <Avatar className="w-8 h-8 ring-2 ring-primary/30 shadow-md animate-pulse-glow group-hover:ring-primary/60 transition-all duration-300">
+                <Avatar className="w-8 h-8 ring-2 ring-primary/30 shadow-md group-hover:ring-primary/60 transition-all duration-300">
                   <AvatarImage src="/lovable-uploads/6771dbc1-45f1-482e-905d-df393eb28587.png" alt="Maya" className="object-cover" />
                   <AvatarFallback className="bg-primary text-primary-foreground text-xs">M</AvatarFallback>
                 </Avatar>
-                <div className="bg-accent text-accent-foreground px-4 py-3 rounded-2xl shadow-glow border border-primary/30 animate-pulse-glow relative overflow-hidden">
-                  {/* Typing indicator glow effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 animate-pulse"></div>
+                <div className="bg-accent text-accent-foreground px-4 py-3 rounded-2xl shadow-glow border border-primary/30 relative overflow-hidden">
                   <div className="flex space-x-1 relative z-10">
                     <div className="w-2 h-2 bg-primary rounded-full animate-typing shadow-glow"></div>
                     <div className="w-2 h-2 bg-primary rounded-full animate-typing shadow-glow" style={{ animationDelay: '0.2s' }}></div>
