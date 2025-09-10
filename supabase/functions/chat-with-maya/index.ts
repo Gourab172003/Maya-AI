@@ -4,15 +4,22 @@ import { corsHeaders } from '../_shared/cors.ts'
 const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent'
 
 serve(async (req) => {
+  console.log('🚀 Edge function called:', req.method, req.url);
+  
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders })
   }
 
   try {
     const { message, conversationHistory = [] } = await req.json()
+    console.log('📝 Received message:', message);
+    console.log('📚 Conversation history length:', conversationHistory.length);
+    
     const geminiApiKey = Deno.env.get('GEMINI_API_KEY')
+    console.log('🔑 Gemini API Key exists:', !!geminiApiKey);
 
     if (!geminiApiKey) {
+      console.error('❌ Gemini API key not found');
       return new Response(
         JSON.stringify({ error: 'Gemini API key not configured' }),
         { 
