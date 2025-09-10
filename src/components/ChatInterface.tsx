@@ -355,9 +355,9 @@ From this holographic heart ✨`
             }}
           >
             {/* Dark border vignette - softer intensity */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30"></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30"></div>
-            <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/50"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/20"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/20"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/35"></div>
             
             {/* Subtle border glow effect */}
             <div className="absolute inset-0 ring-1 ring-primary/10 shadow-[inset_0_0_40px_rgba(0,0,0,0.3)]"></div>
@@ -369,7 +369,7 @@ From this holographic heart ✨`
           {/* Character Info - Absolute positioned at bottom */}
           <div className="absolute bottom-0 left-0 right-0 z-20 text-center p-6">
             <h2 className="text-5xl font-script font-bold text-white mb-2 drop-shadow-lg">Maya</h2>
-            <p className="text-white/80 drop-shadow font-script text-xl">You're good friends</p>
+            <p className="text-white/80 drop-shadow font-script text-xl">Your irresistible companion when time slows and the world fades away.</p>
           </div>
         </div>
 
