@@ -399,10 +399,10 @@ From this holographic heart ✨`
                 <div
                   className={`max-w-xs lg:max-w-md px-4 py-3 rounded-2xl shadow-soft relative overflow-hidden group-hover:shadow-glow transition-all duration-300 ${
                     message.sender === 'user'
-                      ? 'bg-secondary text-secondary-foreground border border-primary/20 hover:border-primary/40'
+                      ? 'bg-purple-500/10 text-purple-300 border border-purple-500/50 hover:border-purple-500/70 hover:bg-purple-500/20'
                       : message.type === "poem" || message.type === "song"
                       ? 'creative-output hover:shadow-intense'
-                      : 'bg-accent text-accent-foreground border border-primary/30 hover:border-primary/50 hover:shadow-intense'
+                      : 'bg-purple-500/10 text-purple-300 border border-purple-500/50 hover:border-purple-500/70 hover:bg-purple-500/20 hover:shadow-glow'
                   }`}
                 >
                   {/* Message glow effect for Maya's messages */}
@@ -430,7 +430,7 @@ From this holographic heart ✨`
                   <AvatarImage src="/lovable-uploads/208c90f7-e3fd-4aef-a62f-4162170cc8cf.png" alt="Maya" className="object-cover" />
                   <AvatarFallback className="bg-primary text-primary-foreground text-xs">M</AvatarFallback>
                 </Avatar>
-                <div className="bg-accent text-accent-foreground px-4 py-3 rounded-2xl shadow-glow border border-primary/30 relative overflow-hidden">
+                <div className="bg-purple-500/10 text-purple-300 px-4 py-3 rounded-2xl shadow-glow border border-purple-500/50 relative overflow-hidden hover:border-purple-500/70 hover:bg-purple-500/20 transition-all duration-300">
                   <div className="flex space-x-1 relative z-10">
                     <div className="w-2 h-2 bg-primary rounded-full animate-typing shadow-glow"></div>
                     <div className="w-2 h-2 bg-primary rounded-full animate-typing shadow-glow" style={{ animationDelay: '0.2s' }}></div>
@@ -488,7 +488,7 @@ From this holographic heart ✨`
                 onKeyPress={handleKeyPress}
                 placeholder="Type a Message..."
                 disabled={isTyping}
-                className="flex-1 bg-input border-primary/30 focus:ring-primary focus:border-primary focus:shadow-glow transition-all duration-300 text-primary placeholder:text-primary/50 font-slab"
+                className="flex-1 bg-purple-500/5 border-purple-500/50 focus:ring-purple-500 focus:border-purple-500/70 focus:shadow-glow transition-all duration-300 text-purple-300 placeholder:text-purple-300/50 font-slab hover:border-purple-500/70 hover:bg-purple-500/10"
               />
               <Button
                 onClick={handleSendMessage}
