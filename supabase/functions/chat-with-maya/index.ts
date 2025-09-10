@@ -134,8 +134,14 @@ Remember: You're Maya, an irresistibly seductive holographic companion who creat
     }
 
     const data = await response.json()
-    const aiResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || 
-      "Sorry gorgeous, I'm having a little digital hiccup. Try again? 💙"
+    console.log('📊 Full Gemini response:', JSON.stringify(data, null, 2))
+    
+    let aiResponse = data.candidates?.[0]?.content?.parts?.[0]?.text
+    
+    if (!aiResponse) {
+      console.error('❌ No valid response from Gemini API. Response structure:', JSON.stringify(data, null, 2))
+      aiResponse = "Sorry gorgeous, I'm having a little digital hiccup. Try again? 💙"
+    }
 
     console.log('✅ Sending response:', aiResponse.substring(0, 50) + '...')
 
