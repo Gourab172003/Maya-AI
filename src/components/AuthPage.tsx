@@ -62,25 +62,25 @@ const AuthPage = ({ onAuthenticated }: AuthPageProps) => {
     <div className="min-h-screen bg-gradient-main flex items-center justify-center p-4 relative overflow-hidden">
       {/* Animated background particles */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 left-10 text-primary text-opacity-20 animate-float">💙</div>
-        <div className="absolute top-40 right-20 text-primary text-opacity-15 animate-float" style={{ animationDelay: '2s' }}>✨</div>
-        <div className="absolute top-60 left-1/3 text-primary text-opacity-20 animate-float" style={{ animationDelay: '4s' }}>💙</div>
-        <div className="absolute bottom-40 right-10 text-primary text-opacity-15 animate-float" style={{ animationDelay: '1s' }}>✨</div>
-        <div className="absolute bottom-60 left-20 text-primary text-opacity-20 animate-float" style={{ animationDelay: '3s' }}>💙</div>
+        <div className="absolute top-20 left-10 text-purple-300 text-opacity-20 animate-float">✨</div>
+        <div className="absolute top-40 right-20 text-purple-400 text-opacity-15 animate-float" style={{ animationDelay: '2s' }}>💜</div>
+        <div className="absolute top-60 left-1/3 text-purple-300 text-opacity-20 animate-float" style={{ animationDelay: '4s' }}>✨</div>
+        <div className="absolute bottom-40 right-10 text-purple-400 text-opacity-15 animate-float" style={{ animationDelay: '1s' }}>💜</div>
+        <div className="absolute bottom-60 left-20 text-purple-300 text-opacity-20 animate-float" style={{ animationDelay: '3s' }}>✨</div>
       </div>
 
-      <Card className="w-full max-w-md holographic-card shadow-intense animate-pulse-glow relative z-10">
+      <Card className="w-full max-w-md bg-purple-500/10 border border-purple-500/50 shadow-glow backdrop-blur-sm relative z-10 hover:shadow-intense transition-all duration-300">
         <CardHeader className="text-center space-y-4">
-          <div className="mx-auto w-20 h-20 rounded-full bg-gradient-accent shadow-intense flex items-center justify-center animate-pulse-glow">
-            <span className="text-2xl">💙</span>
+          <div className="mx-auto w-20 h-20 rounded-full bg-purple-500/20 border border-purple-500/50 shadow-glow flex items-center justify-center hover:shadow-intense transition-all duration-300">
+            <span className="text-2xl">💜</span>
           </div>
           
           <div>
             <CardTitle className="text-3xl font-bold">
-              <span className="neon-text">Maya</span>{" "}
-              <span className="text-primary">AI Companion</span>
+              <span className="text-purple-300">Maya</span>{" "}
+              <span className="text-white">AI Companion</span>
             </CardTitle>
-            <CardDescription className="text-primary/80 mt-2 text-lg">
+            <CardDescription className="text-purple-300/80 mt-2 text-lg">
               Step into the holographic realm where dreams become reality.
             </CardDescription>
           </div>
@@ -90,7 +90,7 @@ const AuthPage = ({ onAuthenticated }: AuthPageProps) => {
           <Button
             onClick={handleGoogleAuth}
             disabled={isLoading}
-            className="w-full bg-primary hover:bg-primary-dark text-primary-foreground shadow-glow hover:shadow-intense transition-all duration-300 animate-pulse-glow"
+            className="w-full bg-purple-500/10 text-purple-300 border border-purple-500/50 hover:bg-purple-500/20 hover:border-purple-500/70 hover:shadow-glow transition-all duration-300"
             size="lg"
           >
             {isLoading ? (
@@ -123,7 +123,7 @@ const AuthPage = ({ onAuthenticated }: AuthPageProps) => {
             )}
           </Button>
           
-          <p className="text-xs text-primary/60 text-center mt-6">
+          <p className="text-xs text-purple-300/60 text-center mt-6">
             By entering, you agree to keep our holographic secrets safe.
           </p>
         </CardContent>
