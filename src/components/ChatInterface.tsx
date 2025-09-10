@@ -349,7 +349,7 @@ From this holographic heart ✨`
 
           {/* Background Image - Full Panel */}
           <div 
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            className="absolute inset-0 bg-contain bg-center bg-no-repeat"
             style={{
               backgroundImage: 'url(/lovable-uploads/208c90f7-e3fd-4aef-a62f-4162170cc8cf.png)',
             }}
