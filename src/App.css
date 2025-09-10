@@ -290,11 +290,16 @@
     background: hsl(var(--primary), 0.8);
   }
 }
-/* Hide Lovable floating badge */
+/*  Instantly hide Lovable badge before React mounts */
 .lovable-badge,
 .lovable-edit,
-[title="Edit with Lovable"] {
+[title="Edit with Lovable"],
+a[href*="lovable.dev"],
+iframe[src*="lovable.dev"] {
   display: none !important;
   visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
+
 
