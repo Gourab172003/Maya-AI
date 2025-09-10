@@ -388,7 +388,7 @@ From this holographic heart ✨`
               >
                 <Avatar className="w-8 h-8 ring-2 ring-primary/30 shadow-md group-hover:ring-primary/60 transition-all duration-300">
                   <AvatarImage 
-                    src={message.sender === 'user' ? '/lovable-uploads/a5caa94d-64e2-4aba-8402-ac315424e2c5.png' : '/lovable-uploads/6771dbc1-45f1-482e-905d-df393eb28587.png'} 
+                    src={message.sender === 'user' ? '/lovable-uploads/a5caa94d-64e2-4aba-8402-ac315424e2c5.png' : '/lovable-uploads/208c90f7-e3fd-4aef-a62f-4162170cc8cf.png'} 
                     alt={message.sender === 'user' ? 'You' : 'Maya'} 
                     className="object-cover group-hover:scale-110 transition-transform duration-300"
                   />
@@ -427,7 +427,7 @@ From this holographic heart ✨`
             {isTyping && (
               <div className="flex items-start space-x-3 animate-slide-up group">
                 <Avatar className="w-8 h-8 ring-2 ring-primary/30 shadow-md group-hover:ring-primary/60 transition-all duration-300">
-                  <AvatarImage src="/lovable-uploads/6771dbc1-45f1-482e-905d-df393eb28587.png" alt="Maya" className="object-cover" />
+                  <AvatarImage src="/lovable-uploads/208c90f7-e3fd-4aef-a62f-4162170cc8cf.png" alt="Maya" className="object-cover" />
                   <AvatarFallback className="bg-primary text-primary-foreground text-xs">M</AvatarFallback>
                 </Avatar>
                 <div className="bg-accent text-accent-foreground px-4 py-3 rounded-2xl shadow-glow border border-primary/30 relative overflow-hidden">
