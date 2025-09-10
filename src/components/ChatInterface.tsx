@@ -345,13 +345,14 @@ From this holographic heart ✨`
       {/* Main Layout - Two Columns */}
       <div className="relative z-10 flex h-screen">
         {/* Left Panel - Character Section */}
-        <div className="w-1/3 relative flex flex-col holographic-card border-r border-primary/30 overflow-hidden">
+        <div className="w-1/4 relative flex flex-col holographic-card border-r border-primary/30 overflow-hidden">
 
           {/* Background Image - Full Panel */}
           <div 
-            className="absolute inset-0 bg-contain bg-center bg-no-repeat"
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat shadow-2xl"
             style={{
               backgroundImage: 'url(/lovable-uploads/208c90f7-e3fd-4aef-a62f-4162170cc8cf.png)',
+              filter: 'drop-shadow(0 0 20px rgba(139, 92, 246, 0.3))'
             }}
           >
             {/* Dark border vignette - softer intensity */}
@@ -359,17 +360,17 @@ From this holographic heart ✨`
             <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/20"></div>
             <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/35"></div>
             
-            {/* Subtle border glow effect */}
-            <div className="absolute inset-0 ring-1 ring-primary/10 shadow-[inset_0_0_40px_rgba(0,0,0,0.3)]"></div>
+            {/* Enhanced border glow effect */}
+            <div className="absolute inset-0 ring-2 ring-primary/30 shadow-[inset_0_0_40px_rgba(139,92,246,0.4)] border border-primary/20"></div>
             
             {/* Gradient overlay for text readability */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
           </div>
           
           {/* Character Info - Absolute positioned at bottom */}
-          <div className="absolute bottom-0 left-0 right-0 z-20 text-center p-6">
-            <h2 className="text-5xl font-script font-bold text-white mb-2 drop-shadow-lg">Maya</h2>
-            <p className="text-white/80 drop-shadow font-script text-xl">Your irresistible companion when time slows and the world fades away.</p>
+          <div className="absolute bottom-0 left-0 right-0 z-20 text-center p-4">
+            <h2 className="text-3xl font-script font-bold text-white mb-2 drop-shadow-lg">Maya</h2>
+            <p className="text-white/80 drop-shadow font-script text-sm leading-tight">Your irresistible companion when time slows and the world fades away.</p>
           </div>
         </div>
 
