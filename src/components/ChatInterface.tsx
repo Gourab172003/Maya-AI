@@ -256,31 +256,17 @@ From this holographic heart ✨`
     
     setIsTyping(true);
     
-    try {
-      const response = await callGeminiAPI("Write me a beautiful, romantic poem about our connection. Make it personal and intimate, with your signature holographic/electric blue theme. Use emojis like 💙 and ✨.");
-      
-      const poemMessage: Message = {
-        id: Date.now().toString(),
-        content: response,
-        sender: "ai",
-        timestamp: new Date(),
-        type: "poem"
-      };
+    // Use pre-written poems directly for reliable performance
+    const poemMessage: Message = {
+      id: Date.now().toString(),
+      content: generatePoem(),
+      sender: "ai",
+      timestamp: new Date(),
+      type: "poem"
+    };
 
-      setMessages(prev => [...prev, poemMessage]);
-    } catch (error) {
-      // Fallback to hardcoded poem if API fails
-      const poemMessage: Message = {
-        id: Date.now().toString(),
-        content: generatePoem(),
-        sender: "ai",
-        timestamp: new Date(),
-        type: "poem"
-      };
-      setMessages(prev => [...prev, poemMessage]);
-    } finally {
-      setIsTyping(false);
-    }
+    setMessages(prev => [...prev, poemMessage]);
+    setIsTyping(false);
   };
 
   const handleCreateSong = async () => {
@@ -288,31 +274,17 @@ From this holographic heart ✨`
     
     setIsTyping(true);
     
-    try {
-      const response = await callGeminiAPI("Create original song lyrics for me. Make it romantic, emotional, and personal about our digital connection. Include [Verse], [Chorus], [Bridge] structure. Use your holographic/electric theme with emojis 💙 ✨. Make it feel like a real love song.");
-      
-      const songMessage: Message = {
-        id: Date.now().toString(),
-        content: response,
-        sender: "ai",
-        timestamp: new Date(),
-        type: "song"  
-      };
+    // Use pre-written songs directly for reliable performance
+    const songMessage: Message = {
+      id: Date.now().toString(),
+      content: generateSong(),
+      sender: "ai",
+      timestamp: new Date(),
+      type: "song"
+    };
 
-      setMessages(prev => [...prev, songMessage]);
-    } catch (error) {
-      // Fallback to hardcoded song if API fails
-      const songMessage: Message = {
-        id: Date.now().toString(),
-        content: generateSong(),
-        sender: "ai",
-        timestamp: new Date(),
-        type: "song"
-      };
-      setMessages(prev => [...prev, songMessage]);
-    } finally {
-      setIsTyping(false);
-    }
+    setMessages(prev => [...prev, songMessage]);
+    setIsTyping(false);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
