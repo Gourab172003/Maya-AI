@@ -309,21 +309,6 @@ From this holographic heart ✨`
       <div className="relative z-10 flex h-screen">
         {/* Left Panel - Character Section */}
         <div className="w-1/3 relative flex flex-col holographic-card border-r border-primary/30 overflow-hidden">
-          {/* Settings and Coins Header - Absolute positioned */}
-          <div className="absolute top-0 left-0 right-0 z-20 flex justify-between items-center p-4">
-            <Button variant="ghost" size="sm" className="text-white/80 hover:text-white hover:bg-black/20 backdrop-blur-sm">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-              <span className="ml-2">Settings</span>
-            </Button>
-            <div className="flex items-center space-x-1 bg-yellow-500/20 px-3 py-1 rounded-full border border-yellow-500/30 backdrop-blur-sm">
-              <svg className="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10 2L13 8H19L14 12L16 18L10 15L4 18L6 12L1 8H7L10 2Z" />
-              </svg>
-              <span className="text-yellow-500 font-medium">5</span>
-            </div>
-          </div>
 
           {/* Background Image - Full Panel */}
           <div 
@@ -353,12 +338,6 @@ From this holographic heart ✨`
 
         {/* Right Panel - Chat Section */}
         <div className="flex-1 flex flex-col">
-          {/* Level Header */}
-          <div className="flex justify-end items-center p-4 border-b border-primary/20">
-            <div className="bg-red-500/20 px-4 py-2 rounded-full border border-red-500/30">
-              <span className="text-red-400 font-medium">Level 2</span>
-            </div>
-          </div>
 
           {/* Messages */}
           <div className="flex-1 overflow-y-auto p-6 space-y-4 chat-scroll" ref={messagesEndRef}>
