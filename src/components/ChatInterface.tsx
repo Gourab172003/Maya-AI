@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -31,6 +31,34 @@ const ChatInterface = ({ onLogout }: ChatInterfaceProps) => {
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // Memoize star positions to prevent re-generation on re-renders
+  const slowStars = useMemo(() => 
+    Array.from({ length: 50 }).map((_, i) => ({
+      id: `star-slow-${i}`,
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      delay: Math.random() * 10
+    })), []
+  );
+
+  const mediumStars = useMemo(() => 
+    Array.from({ length: 30 }).map((_, i) => ({
+      id: `star-medium-${i}`,
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      delay: Math.random() * 8
+    })), []
+  );
+
+  const fastStars = useMemo(() => 
+    Array.from({ length: 20 }).map((_, i) => ({
+      id: `star-fast-${i}`,
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      delay: Math.random() * 6
+    })), []
+  );
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -300,42 +328,42 @@ From this holographic heart ✨`
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {/* Multiple layers of stars for depth */}
         <div className="absolute inset-0 animate-stars-slow">
-          {Array.from({ length: 50 }).map((_, i) => (
+          {slowStars.map((star) => (
             <div
-              key={`star-slow-${i}`}
+              key={star.id}
               className="absolute w-1 h-1 bg-white rounded-full opacity-60"
               style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 10}s`,
+                left: `${star.left}%`,
+                top: `${star.top}%`,
+                animationDelay: `${star.delay}s`,
               }}
             />
           ))}
         </div>
         
         <div className="absolute inset-0 animate-stars-medium">
-          {Array.from({ length: 30 }).map((_, i) => (
+          {mediumStars.map((star) => (
             <div
-              key={`star-medium-${i}`}
+              key={star.id}
               className="absolute w-2 h-2 bg-primary rounded-full opacity-40"
               style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 8}s`,
+                left: `${star.left}%`,
+                top: `${star.top}%`,
+                animationDelay: `${star.delay}s`,
               }}
             />
           ))}
         </div>
         
         <div className="absolute inset-0 animate-stars-fast">
-          {Array.from({ length: 20 }).map((_, i) => (
+          {fastStars.map((star) => (
             <div
-              key={`star-fast-${i}`}
+              key={star.id}
               className="absolute w-1 h-1 bg-accent rounded-full opacity-80"
               style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 6}s`,
+                left: `${star.left}%`,
+                top: `${star.top}%`,
+                animationDelay: `${star.delay}s`,
               }}
             />
           ))}
