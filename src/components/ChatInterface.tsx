@@ -332,16 +332,16 @@ From this holographic heart ✨`
               backgroundImage: 'url(/lovable-uploads/6771dbc1-45f1-482e-905d-df393eb28587.png)',
             }}
           >
-            {/* Dark border vignette - matching animated background */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/60"></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/60"></div>
-            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80"></div>
+            {/* Dark border vignette - softer intensity */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/50"></div>
             
-            {/* Primary border glow effect */}
-            <div className="absolute inset-0 ring-1 ring-primary/20 shadow-[inset_0_0_60px_rgba(0,0,0,0.6)]"></div>
+            {/* Subtle border glow effect */}
+            <div className="absolute inset-0 ring-1 ring-primary/10 shadow-[inset_0_0_40px_rgba(0,0,0,0.3)]"></div>
             
             {/* Gradient overlay for text readability */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
           </div>
           
           {/* Character Info - Absolute positioned at bottom */}
