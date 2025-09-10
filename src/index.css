@@ -248,3 +248,11 @@
     background: hsl(var(--primary), 0.8);
   }
 }
+/* Hide Lovable floating badge */
+.lovable-badge,
+.lovable-edit,
+[title="Edit with Lovable"] {
+  display: none !important;
+  visibility: hidden !important;
+}
+
