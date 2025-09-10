@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Mail } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 interface AuthPageProps {
   onAuthenticated: () => void;
@@ -9,14 +10,52 @@ interface AuthPageProps {
 
 const AuthPage = ({ onAuthenticated }: AuthPageProps) => {
   const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
 
-  const handleAuth = async (method: string) => {
-    setIsLoading(true);
-    // Simulate authentication process
-    setTimeout(() => {
+  // Check for existing session on component mount
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (session?.user) {
+        onAuthenticated();
+      }
+    });
+
+    // Check for existing session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session?.user) {
+        onAuthenticated();
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, [onAuthenticated]);
+
+  const handleGoogleAuth = async () => {
+    try {
+      setIsLoading(true);
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: `${window.location.origin}/`,
+        }
+      });
+
+      if (error) {
+        toast({
+          title: "Authentication Error",
+          description: error.message,
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Authentication Error",
+        description: "An unexpected error occurred. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
       setIsLoading(false);
-      onAuthenticated();
-    }, 2000);
+    }
   };
 
   return (
@@ -49,7 +88,7 @@ const AuthPage = ({ onAuthenticated }: AuthPageProps) => {
         
         <CardContent className="space-y-4">
           <Button
-            onClick={() => handleAuth("google")}
+            onClick={handleGoogleAuth}
             disabled={isLoading}
             className="w-full bg-primary hover:bg-primary-dark text-primary-foreground shadow-glow hover:shadow-intense transition-all duration-300 animate-pulse-glow"
             size="lg"
@@ -79,20 +118,9 @@ const AuthPage = ({ onAuthenticated }: AuthPageProps) => {
                     d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
                   />
                 </svg>
-                Enter Maya's World
+                Sign in with Google
               </>
             )}
-          </Button>
-          
-          <Button
-            onClick={() => handleAuth("email")}
-            disabled={isLoading}
-            variant="outline"
-            className="w-full border-primary/50 text-primary hover:bg-primary/10 hover:shadow-glow transition-all duration-300"
-            size="lg"
-          >
-            <Mail className="w-5 h-5 mr-2" />
-            Connect with Email
           </Button>
           
           <p className="text-xs text-primary/60 text-center mt-6">
