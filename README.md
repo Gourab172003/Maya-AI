@@ -1,73 +1,49 @@
-# Welcome to your Lovable project
+Welcome to Maya AI 2.0 (A space between reality and dreams!)
 
 ## Project info
 
-**URL**: https://senorita-chatter-63.lovable.app/
+**URL**: maya-ai-ecru.vercel.app
 
-## How can I edit this code?
+**About the application**
+This Web app is a single-page React application (built with Vite/Remix-style setup) that provides an AI chat companion called Maya — a holographic, neon-themed chat UI with authentication and an AI backend. The UI is client-rendered with React + React Router. It uses Tailwind for styling, TanStack Query for remote data fetching/caching, Sonner/Toaster for notifications, and (based on the repo) Supabase likely for auth and/or persistence. The project is hosted via GitHub + Vercel (auto-deploy on push).
 
-There are several ways of editing your application.
 
-**Use Lovable**
+**Core tech stack**
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/d251301f-685e-4609-9677-88da43f99a2c) and start prompting.
+1.React (React Router for routes — BrowserRouter + Routes)
+2.Vite / Remix-style structure (you have index.html at root + src/ and vite.config.ts)
+3.Tailwind CSS (tailwind.config.ts + @tailwind directives in your global CSS)
+4.TanStack Query for data fetching (QueryClientProvider)
+5.Sonner / Toaster for UI notifications
+6.Supabase (there’s a supabase folder — probably for DB/auth or file storage)
+7.Gemini / LLM integration (commit message mentioned “Add Gemini API integration”) — likely used server-side to query the AI model.
+8.Vercel for hosting (connected to GitHub repo for CI/CD)
 
-Changes made via Lovable will be committed automatically to this repo.
 
-**Use your preferred IDE**
+**Key files and responsibilities**
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+1.index.html — root HTML that bootstraps your SPA. Best place for any very early inline script .
+2.src/main.tsx — entrypoint that imports global CSS and mounts <App />. You added the MutationObserver kill there .
+3.src/App.tsx — main app component, sets up QueryClientProvider, TooltipProvider, BrowserRouter, Toasters, and contains the useEffect that removes Lovable nodes as a last defense.
+4.src/index.css / src/app.css — global Tailwind + theme CSS. Good place for instant display:none !important rules to prevent flashes.
+5.src/pages/Index.tsx — main chat page (UI for message list, input) — where chat renders after auth.
+6.src/pages/NotFound.tsx — fallback route.
+7.src/components/ui/* — UI primitives.
+8.supabase/ — DB or auth helpers / migrations .
+9..env / serverless endpoints — server API keys (Gemini/OpenAI).
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
-Follow these steps:
+**Deployment / CI**
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+1.GitHub → Vercel auto-deploy on push.
+2.Add a GitHub Action for PR checks (lint, typecheck, unit tests).
+3.Add Preview Deploys from Vercel for PRs to validate changes visually.
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
 
-# Step 3: Install the necessary dependencies.
-npm i
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
 
-**Edit a file directly in GitHub**
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
 
-**Use GitHub Codespaces**
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
 
-## What technologies are used for this project?
 
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/592828c7-b7f6-4b52-951d-9cb757cd3e47) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
