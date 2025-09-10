@@ -388,7 +388,7 @@ From this holographic heart ✨`
               >
                 <Avatar className="w-8 h-8 ring-2 ring-primary/30 shadow-md group-hover:ring-primary/60 transition-all duration-300">
                   <AvatarImage 
-                    src={message.sender === 'user' ? '/placeholder.svg' : '/lovable-uploads/6771dbc1-45f1-482e-905d-df393eb28587.png'} 
+                    src={message.sender === 'user' ? '/placeholder.svg' : '/lovable-uploads/ba4a28fb-122a-4193-9127-3b05496b9670.png'} 
                     alt={message.sender === 'user' ? 'You' : 'Maya'} 
                     className="object-cover group-hover:scale-110 transition-transform duration-300"
                   />
