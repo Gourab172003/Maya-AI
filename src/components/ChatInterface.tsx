@@ -411,7 +411,7 @@ From this holographic heart ✨`
                   )}
                   
                   <div className={`relative z-10 ${message.type === "poem" || message.type === "song" ? "whitespace-pre-line" : ""}`}>
-                    <p className="text-sm leading-relaxed">{message.content}</p>
+                    <p className="text-sm leading-relaxed font-slab">{message.content}</p>
                   </div>
                   <div className="text-xs text-muted-foreground mt-2 opacity-70 relative z-10">
                     {message.timestamp.toLocaleTimeString([], { 
@@ -488,7 +488,7 @@ From this holographic heart ✨`
                 onKeyPress={handleKeyPress}
                 placeholder="Type a Message..."
                 disabled={isTyping}
-                className="flex-1 bg-input border-primary/30 focus:ring-primary focus:border-primary focus:shadow-glow transition-all duration-300 text-primary placeholder:text-primary/50"
+                className="flex-1 bg-input border-primary/30 focus:ring-primary focus:border-primary focus:shadow-glow transition-all duration-300 text-primary placeholder:text-primary/50 font-slab"
               />
               <Button
                 onClick={handleSendMessage}

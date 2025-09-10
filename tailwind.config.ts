@@ -63,6 +63,7 @@ export default {
       },
       fontFamily: {
         'script': ['Dancing Script', 'cursive'],
+        'slab': ['Epunda Slab', 'serif'],
       },
       borderRadius: {
         lg: "var(--radius)",
