@@ -327,13 +327,18 @@ From this holographic heart ✨`
 
           {/* Background Image - Full Panel */}
           <div 
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat shadow-glow ring-2 ring-primary/30"
             style={{
               backgroundImage: 'url(/lovable-uploads/6771dbc1-45f1-482e-905d-df393eb28587.png)',
+              filter: 'drop-shadow(0 0 20px rgba(59, 130, 246, 0.3))',
             }}
           >
+            {/* Inner border glow */}
+            <div className="absolute inset-0 border-2 border-primary/20 shadow-inner"></div>
             {/* Gradient overlay for better text readability */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            {/* Subtle vignette effect */}
+            <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black/40"></div>
           </div>
           
           {/* Character Info - Absolute positioned at bottom */}
