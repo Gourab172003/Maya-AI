@@ -21,7 +21,7 @@ This Web app is a single-page React application (built with Vite/Remix-style set
 
 
 
-**Key files and responsibilities**
+##Key files and responsibilities
 
 1.index.html — root HTML that bootstraps your SPA. Best place for any very early inline script .
 2.src/main.tsx — entrypoint that imports global CSS and mounts <App />. You added the MutationObserver kill there .
@@ -34,7 +34,7 @@ This Web app is a single-page React application (built with Vite/Remix-style set
 9..env / serverless endpoints — server API keys (Gemini/OpenAI).
 
 
-**Deployment / CI**
+##Deployment 
 
 1.GitHub → Vercel auto-deploy on push.
 2.Add a GitHub Action for PR checks (lint, typecheck, unit tests).
