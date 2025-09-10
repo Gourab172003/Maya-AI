@@ -360,8 +360,8 @@ From this holographic heart ✨`
             <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/20"></div>
             <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/35"></div>
             
-            {/* Enhanced border glow effect */}
-            <div className="absolute inset-0 ring-2 ring-primary/30 shadow-[inset_0_0_40px_rgba(139,92,246,0.4)] border border-primary/20"></div>
+            {/* Enhanced border glow effect with subtle inner shadow */}
+            <div className="absolute inset-0 ring-2 ring-primary/30 shadow-[inset_0_0_40px_rgba(139,92,246,0.4),inset_0_0_80px_rgba(0,0,0,0.15)] border border-primary/20"></div>
             
             {/* Gradient overlay for text readability */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
