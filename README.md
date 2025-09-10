@@ -43,7 +43,7 @@ This Web app is a single-page React application (built with Vite/Remix-style set
 
 ---
 
-### Deployment / CI
+### Deployment 
 
 1. **GitHub → Vercel auto-deploy on push**.  
 2. **Add a GitHub Action** for PR checks (lint, typecheck, unit tests).  
