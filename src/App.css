@@ -40,3 +40,261 @@
 .read-the-docs {
   color: #888;
 }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Maya AI Companion - Holographic Neon Theme */
+
+@layer base {
+  :root {
+    /* Pure black background system */
+    --background: 0 0% 0%; /* Pure black #000000 */
+    --background-secondary: 0 0% 5%; /* Very dark grey for cards */
+    --foreground: 0 0% 100%; /* Clean white */
+
+    /* Card system for holographic panels */
+    --card: 0 0% 5%; /* Very dark grey with blue tint */
+    --card-foreground: 0 0% 100%;
+
+    /* Primary accent - Electric glowing blue */
+    --primary: 195 100% 50%; /* Electric blue #00BFFF */
+    --primary-dark: 195 100% 40%; /* Darker blue */
+    --primary-foreground: 0 0% 0%; /* Black text on blue */
+
+    /* Secondary colors for chat bubbles */
+    --secondary: 0 0% 8%; /* Dark for user messages */
+    --secondary-foreground: 195 100% 50%; /* Blue text */
+
+    /* Maya's message bubble color */
+    --accent: 0 0% 3%; /* Almost black for Maya messages */
+    --accent-foreground: 195 100% 50%; /* Glowing blue text */
+
+    /* Input and border colors */
+    --input: 0 0% 3%; /* Almost black for inputs */
+    --border: 195 100% 20%; /* Blue borders */
+    --ring: 195 100% 50%; /* Electric blue for focus rings */
+
+    /* Status colors */
+    --online: 195 100% 50%; /* Blue for online status */
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 40%;
+
+    --radius: 0.75rem;
+
+    /* Custom gradients */
+    --gradient-main: linear-gradient(135deg, hsl(0, 0%, 0%) 0%, hsl(0, 0%, 3%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(195, 100%, 50%) 0%, hsl(195, 100%, 40%) 100%);
+    --gradient-glow: radial-gradient(circle at center, hsl(195, 100%, 50%, 0.3) 0%, transparent 70%);
+    --gradient-card: linear-gradient(135deg, hsl(0, 0%, 5%) 0%, hsl(0, 0%, 8%) 100%);
+
+    /* Animation transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    /* Holographic neon shadows */
+    --shadow-glow: 0 0 30px hsl(195, 100%, 50%, 0.6);
+    --shadow-soft: 0 4px 20px hsl(195, 100%, 50%, 0.2);
+    --shadow-intense: 0 0 50px hsl(195, 100%, 50%, 0.8);
+    --text-glow: 0 0 10px hsl(195, 100%, 50%, 0.8);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply text-foreground font-sans;
+    background: var(--gradient-main);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Animated background particles */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      radial-gradient(2px 2px at 20px 30px, hsl(195, 100%, 50%, 0.3), transparent),
+      radial-gradient(2px 2px at 40px 70px, hsl(195, 100%, 50%, 0.2), transparent),
+      radial-gradient(1px 1px at 90px 40px, hsl(195, 100%, 50%, 0.4), transparent),
+      radial-gradient(1px 1px at 130px 80px, hsl(195, 100%, 50%, 0.3), transparent),
+      radial-gradient(2px 2px at 160px 30px, hsl(195, 100%, 50%, 0.2), transparent);
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    animation: float 20s linear infinite;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  /* Custom animations */
+  @keyframes typing {
+    0%, 60%, 100% { opacity: 0.4; }
+    30% { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes glow {
+    0%, 100% { box-shadow: var(--shadow-glow); }
+    50% { box-shadow: var(--shadow-intense); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0px) translateX(0px); }
+    33% { transform: translateY(-10px) translateX(5px); }
+    66% { transform: translateY(5px) translateX(-5px); }
+    100% { transform: translateY(0px) translateX(0px); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { 
+      transform: scale(1);
+      box-shadow: var(--shadow-glow);
+    }
+    50% { 
+      transform: scale(1.05);
+      box-shadow: var(--shadow-intense);
+    }
+  }
+
+  @keyframes neonText {
+    0%, 100% { text-shadow: var(--text-glow); }
+    50% { text-shadow: 0 0 20px hsl(195, 100%, 50%, 1); }
+  }
+
+  /* Space travel star animations */
+  @keyframes stars-slow {
+    0% { transform: translateX(-100vw) translateY(0); }
+    100% { transform: translateX(100vw) translateY(-10vh); }
+  }
+
+  @keyframes stars-medium {
+    0% { transform: translateX(-100vw) translateY(0); }
+    100% { transform: translateX(100vw) translateY(-20vh); }
+  }
+
+  @keyframes stars-fast {
+    0% { transform: translateX(-100vw) translateY(0); }
+    100% { transform: translateX(100vw) translateY(-5vh); }
+  }
+
+  /* Utility classes */
+  .animate-typing {
+    animation: typing 1.5s infinite;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  /* Space travel star animation classes */
+  .animate-stars-slow {
+    animation: stars-slow 20s linear infinite;
+  }
+
+  .animate-stars-medium {
+    animation: stars-medium 15s linear infinite;
+  }
+
+  .animate-stars-fast {
+    animation: stars-fast 10s linear infinite;
+  }
+
+  .gradient-text {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: var(--text-glow);
+  }
+
+  .neon-text {
+    color: hsl(var(--primary));
+    text-shadow: var(--text-glow);
+    animation: neonText 2s ease-in-out infinite;
+  }
+
+  .holographic-card {
+    background: var(--gradient-card);
+    border: 1px solid hsl(var(--primary), 0.3);
+    box-shadow: var(--shadow-soft);
+    backdrop-filter: blur(10px);
+  }
+
+  .creative-output {
+    background: linear-gradient(135deg, hsl(0, 0%, 3%) 0%, hsl(195, 100%, 5%) 100%);
+    border: 1px solid hsl(var(--primary), 0.5);
+    border-radius: var(--radius);
+    padding: 1rem;
+    margin: 0.5rem 0;
+    box-shadow: var(--shadow-soft);
+    font-style: italic;
+    color: hsl(var(--primary));
+    text-shadow: 0 0 5px hsl(195, 100%, 50%, 0.5);
+  }
+
+  /* Custom scrollbar */
+  .chat-scroll::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .chat-scroll::-webkit-scrollbar-track {
+    background: hsl(0, 0%, 5%);
+    border-radius: 3px;
+  }
+
+  .chat-scroll::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary), 0.5);
+    border-radius: 3px;
+  }
+
+  .chat-scroll::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary), 0.8);
+  }
+}
+/* Hide Lovable floating badge */
+.lovable-badge,
+.lovable-edit,
+[title="Edit with Lovable"] {
+  display: none !important;
+  visibility: hidden !important;
+}
+
