@@ -10,21 +10,35 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 const App = () => {
+
   // 🛠️ Remove Lovable badge after render
-  useEffect(() => {
-    const removeBadge = () => {
-      const badge = document.querySelector('[title="Edit with Lovable"]');
-      if (badge) badge.remove();
-    };
+useEffect(() => {
+  const removeBadge = () => {
+    // Remove by title
+    document.querySelectorAll('[title="Edit with Lovable"]').forEach(el => el.remove());
 
-    // Try immediately
-    removeBadge();
+    // Remove by known Lovable classes
+    document.querySelectorAll('.lovable-badge, .lovable-edit').forEach(el => el.remove());
 
-    // Keep checking in case it reappears
-    const interval = setInterval(removeBadge, 1000);
+    // Remove any link or iframe that points to Lovable
+    document.querySelectorAll('a, iframe').forEach(el => {
+      if (el instanceof HTMLAnchorElement && el.href.includes("lovable.dev")) {
+        el.remove();
+      }
+      if (el instanceof HTMLIFrameElement && el.src.includes("lovable.dev")) {
+        el.remove();
+      }
+    });
+  };
 
-    return () => clearInterval(interval);
-  }, []);
+  // Run once immediately
+  removeBadge();
+
+  // Keep running every 500ms in case it reinjects
+  const interval = setInterval(removeBadge, 500);
+
+  return () => clearInterval(interval);
+}, []);
 
   return (
     <QueryClientProvider client={queryClient}>
