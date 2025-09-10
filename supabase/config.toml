@@ -1,1 +1,4 @@
 project_id = "uggzpiytpykmfuubstfn"
+
+[functions.chat-with-maya]
+verify_jwt = false
